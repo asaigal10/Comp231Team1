@@ -5,7 +5,7 @@
 **As a student I want to be able to be able to view my schedule for the day**
 | Task | Who | Est. | Actual |
 | :--- | :-- | :--: | :----: |
-| Design code the Home page | Kris | 2 | - |
+| Design code the Home page | Kris | 2 | 2 |
 | Display the current day | Noor | 1 | - |
 | Design the schedule block | Mohammed | 3 | - |
 | Implement local server | Kris | 5 | 1 |
@@ -52,7 +52,7 @@
 **As a student I want to be able to add a quiz for my class**
 | Task | Who | Est. | Actual |
 | :--- | :-- | :--: | :----: |
-| Upadte the assignment form to support quizes | Amrit | 1 | - |
+| Update the assignment form to support quizes | Amrit | 1 | - |
 | Form validation and Quiz validation | Noor | 3 | - |
 
 ***

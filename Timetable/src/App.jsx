@@ -1,10 +1,18 @@
-import './App.css'
+import { useEffect, useState } from 'react'
+import NavBar from './Pages/Elements/NavBar'
+import Home from './Pages/Home'
 
 function App() {
 
+  const [curWeek, setCurWeek] = useState(0)
+  useEffect(() => {
+    setCurWeek({date: new Date().getDay()})
+  }, [])
+
   return (
       <div>
-        <p className='text-3xl font-bold text-red-700'>Test</p>
+        <NavBar currentDayOfWeek={curWeek.date}/>
+        <Home />
       </div>
   )
 }
