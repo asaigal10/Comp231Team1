@@ -1,0 +1,33 @@
+:root {
+    --schedule-width: 400px;
+    --schedule-border-color: lightcoral;
+    --head-color: lightslategray;
+}
+
+.schedule {
+    display: table;
+    border: 1px solid var(--schedule-border-color);
+    padding: 3px;
+    margin: 3px;
+    border-radius: 10px;
+
+    >table {
+        width: var(--schedule-width);
+
+        >thead {
+            border-bottom: 0.2px dashed var(--schedule-border-color);
+
+            >tr th {
+                padding-bottom: 3px;
+                color: var(--head-color);
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+.table-head {
+    padding-bottom: 3px;
+    color: var(--head-color);
+    font-weight: 400;
+}
