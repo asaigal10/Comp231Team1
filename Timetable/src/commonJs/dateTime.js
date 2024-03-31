@@ -1,10 +1,46 @@
-function calcDayOfYear() {
-    var date = new Date()
+function calcDayOfYear(date) {
+    if (typeof (date) == "undefined") {
+        date = new Date()
+    }
     return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000
 }
 
-function calcWeekOfYear() {
-    return Math.floor(calcDayOfYear() / 7)
+
+function calcWeekOfYear(date) {
+    return Math.floor(calcDayOfYear(date) / 7)
+}
+
+function getSemesterWeek() {
+    var curMonth = new Date().getMonth()
+    var curYear = new Date().getFullYear()
+    var calendarWeek = calcWeekOfYear()
+    var dateString = ""
+    if (curMonth >= 0 && curMonth <= 3) {
+        dateString = "January 8, " + curYear
+        calendarWeek -= calcWeekOfYear(new Date(dateString))
+        return calendarWeek
+    } else if (curMonth >= 4 && curMonth <= 7) {
+        dateString = "May 6, " + curYear
+        calendarWeek -= calcWeekOfYear(new Date(dateString))
+        return calendarWeek
+    } else {
+        dateString = "September 3, " + curYear
+        calendarWeek -= calcWeekOfYear(new Date(dateString))
+        return calendarWeek
+    }
+}
+
+function getSemesterString() {
+    var curMonth = new Date().getMonth()
+    var curYear = new Date().getFullYear()
+    var calendarWeek = getSemesterWeek()
+    if (curMonth >= 0 && curMonth <= 3) {
+        return "Winter " + curYear + " - Week " + calendarWeek + " / 14"
+    } else if (curMonth >= 4 && curMonth <= 7) {
+        return "Summer " + curYear + " - Week " + calendarWeek + " / 14"
+    } else {
+        return "Fall " + curYear + " - Week " + calendarWeek + " / 14"
+    }
 }
 
 function convertTime24to12(time24h) {
@@ -19,4 +55,4 @@ function convertTime24to12(time24h) {
     return time.join('');
 }
 
-export { calcDayOfYear, calcWeekOfYear, convertTime24to12 }
+export { calcDayOfYear, calcWeekOfYear, getSemesterWeek, getSemesterString, convertTime24to12 }
