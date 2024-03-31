@@ -1,5 +1,14 @@
 # COMP231 - Team 1 Software Project W24
 
+## How to Run
+this app is a Vite-React application
+useing vs studio code:
+  create a new folder
+  clone this repo to the created folder: `git clone "https://github.com/asaigal10/Comp231Team1"`
+  use navigate to 'Timetable' folder: `cd Timetable`
+  preform a is dependency installation: `npm install`
+  run the app: `npm run dev`
+
 ## Iteration 1 stories
 
 **As a student I want to be able to be able to view my schedule for the day**
