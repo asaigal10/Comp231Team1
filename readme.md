@@ -7,7 +7,7 @@
 | :--- | :-- | :--: | :----: |
 | Design code the Home page | Kris | 2 | 2 |
 | Display the current day | Noor | 1 | - |
-| Design the schedule block | Mohammed | 3 | - |
+| Design the schedule block | Mohammed | 3 | 2 |
 | Implement local server | Kris | 5 | 1 |
 
 ***
@@ -16,7 +16,7 @@
 | Task | Who | Est. | Actual |
 | :--- | :-- | :--: | :----: |
 | Display the current Week | Noor | 2 | - |
-| Design the week schedule | Mohammed | 3 | - |
+| Design the week schedule | Mohammed | 3 | 4 |
 
 ***
 
