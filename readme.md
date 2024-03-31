@@ -1,13 +1,13 @@
 # COMP231 - Team 1 Software Project W24
 
 ## How to Run
-this app is a Vite-React application
-useing vs studio code:
-  create a new folder
-  clone this repo to the created folder: `git clone "https://github.com/asaigal10/Comp231Team1"`
-  use navigate to 'Timetable' folder: `cd Timetable`
-  preform a is dependency installation: `npm install`
-  run the app: `npm run dev`
+this app is a Vite-React application<br>
+useing vs studio code:<br>
+  create a new folder<br>
+  clone this repo to the created folder: `git clone "https://github.com/asaigal10/Comp231Team1"`<br>
+  use navigate to 'Timetable' folder: `cd Timetable`<br>
+  preform a is dependency installation: `npm install`<br>
+  run the app: `npm run dev`<br>
 
 ## Iteration 1 stories
 
