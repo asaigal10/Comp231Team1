@@ -42,7 +42,7 @@ useing vs studio code:<br><br>
 **As a student I want to be able to see the week number so I know which study week I am in.**
 | Task | Who | Est. | Actual |
 | :--- | :-- | :--: | :----: |
-| Calculate week number | Kris | 5 | - |
+| Calculate week number | Kris | 5 | 3 |
 | Update the home page | Noor | 1 | - |
 
 ***
