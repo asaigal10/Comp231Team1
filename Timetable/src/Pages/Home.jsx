@@ -1,34 +1,42 @@
+import { useEffect, useState } from 'react';
 import { calcWeekOfYear } from "../commonJs/dateTime"
 import Schedule from './schedule/Schedule'
 import WeekSchedule from "./week-schedule/WeekSchedule"
+import {
+    getDaySchedule,
+    getStudyWeekNumber,
+    getTodayNumberInStudyDayList,
+    getStudyDaysList,
+    getStudyWeeksCount
+} from '../commonJs/demo'
+
 export default function Home() {
-    /* DEMO DATA - daySchedule */
-    let daySchedule = [
-        {
-            title:'Enterprise Application Development',
-            startTime:'13:00',
-            endTime:'14:20',
-            webAccessId:'1134519',
-            courseType:'Online',
-            courseCode:'COMP303',
-            courseSection:'402'
-        },
-        {
-            title:'Enterprise Application Development',
-            startTime:'13:00',
-            endTime:'14:20',
-            webAccessId:'1134519',
-            courseType:'Online',
-            courseCode:'COMP303',
-            courseSection:'402'
-        },
-    ]
-    let weeksCount = 14;
-    let days = ['Mon','Tue','Wed','Thu','Fri','Sat']
+    const [ studyWeeksCount, setStudyWeeksCount ] = useState(getStudyWeeksCount());
+    const [ studyDaysList, setStudyDaysList ] = useState(getStudyDaysList());
+    const [ selectedDay, setSelectedDay ] = useState(getTodayNumberInStudyDayList(studyDaysList));
+    const [ selectedWeek, setSelectedWeek ] = useState(getStudyWeekNumber());
+    const [ daySchedule, setDaySchedule ] = useState(getDaySchedule(selectedDay, selectedWeek));
+    const [ settings, setSettings ] = useState({'time-format':'12h'});
+    
+    /* shared hooks to be passed to other components */
+    const sharedHooks = {
+        studyWeeksCount, setStudyWeeksCount,
+        studyDaysList, setStudyDaysList,
+        selectedDay, setSelectedDay,
+        selectedWeek, setSelectedWeek,
+        daySchedule, setDaySchedule,
+        settings, setSettings
+    }
+
+    if (daySchedule == undefined){
+        return <div>Please Wait</div>
+    }
     return <div className="max-w-6xl border-black border-4 rounded-md text-center m-auto">
         <h1 className="text-orange-500">Welcome to TimeTable!</h1>
         <p>Week {calcWeekOfYear()} / 14</p>
-        <Schedule daySchedule={daySchedule}/>
-        <WeekSchedule weeksCount={weeksCount} days={days} />
+        {/* <Schedule daySchedule={daySchedule} /> */}
+        <Schedule sharedHooks={sharedHooks} />
+        {/* <WeekSchedule studyWeeksCount={studyWeeksCount} studyDaysList={studyDaysList} /> */}
+        <WeekSchedule sharedHooks={sharedHooks} />
     </div>
 }

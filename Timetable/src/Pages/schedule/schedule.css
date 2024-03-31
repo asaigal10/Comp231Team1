@@ -10,24 +10,18 @@
     padding: 3px;
     margin: 3px;
     border-radius: 10px;
-
-    >table {
-        width: var(--schedule-width);
-
-        >thead {
-            border-bottom: 0.2px dashed var(--schedule-border-color);
-
-            >tr th {
-                padding-bottom: 3px;
-                color: var(--head-color);
-                font-weight: 400;
-            }
-        }
-    }
 }
-
+.border-bottom-dashed{
+    border-bottom: 0.2px dashed var(--schedule-border-color);
+}
 .table-head {
     padding-bottom: 3px;
     color: var(--head-color);
     font-weight: 400;
+}
+.display-table{
+    display: table;
+}
+.schedule-table{
+    width: var(--schedule-width);
 }

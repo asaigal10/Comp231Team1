@@ -34,3 +34,6 @@
 .margin-right{
     margin-right: 5px;
 }
+.selected-week-number{
+    background-color: darkblue;
+}
