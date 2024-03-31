@@ -1,7 +1,7 @@
 :root {
     --schedule-width: 400px;
     --schedule-border-color: lightcoral;
-    --head-color: lightslategray;
+    --schedule-head-color: lightslategray;
 }
 
 .schedule {
@@ -10,18 +10,7 @@
     padding: 3px;
     margin: 3px;
     border-radius: 10px;
-}
-.border-bottom-dashed{
-    border-bottom: 0.2px dashed var(--schedule-border-color);
-}
-.table-head {
-    padding-bottom: 3px;
-    color: var(--head-color);
-    font-weight: 400;
-}
-.display-table{
-    display: table;
-}
-.schedule-table{
-    width: var(--schedule-width);
+    .schedule-table{
+        width: var(--schedule-width);
+    }
 }

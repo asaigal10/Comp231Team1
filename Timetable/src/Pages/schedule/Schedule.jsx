@@ -24,7 +24,12 @@ export default function WeekSchedule({ sharedHooks }) {
                 return sharedHooks.daySchedule[sharedHooks.selectedWeek][sharedHooks.selectedDay]
             }
         }
-        return sharedHooks.daySchedule[0];
+        if (sharedHooks.daySchedule[0]){
+            if (sharedHooks.daySchedule[0][sharedHooks.selectedDay]){
+                return sharedHooks.daySchedule[0][sharedHooks.selectedDay]
+            }
+        }
+        return [];
     }
     return (
         <>
