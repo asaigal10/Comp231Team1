@@ -2,11 +2,11 @@
 
 ## How to Run
 this app is a Vite-React application<br><br>
-useing vs studio code:<br><br>
+using vs code:<br><br>
   create a new folder<br>
   clone this repo to the created folder: `git clone "https://github.com/asaigal10/Comp231Team1"`<br>
-  use navigate to 'Timetable' folder: `cd Timetable`<br>
-  preform a is dependency installation: `npm install`<br>
+  navigate to 'Timetable' folder: `cd Timetable`<br>
+  preform a dependency installation: `npm install`<br>
   run the app: `npm run dev`<br>
 
 ## Iteration 1 stories
