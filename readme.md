@@ -35,7 +35,7 @@ using vs code:<br><br>
 | Update the UI with remove button | Noor | 3 | - |
 | Enable-Disable edit button based on if class selected | Amrit | 1 | - |
 | Update data structure | Kris | 1 | - |
-| Present confirmation modal | Kris | 3 | - |
+| Present confirmation modal | Kris | 3 | 3 |
 
 ***
 
