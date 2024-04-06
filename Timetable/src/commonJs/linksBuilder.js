@@ -1,4 +1,4 @@
-let linkBuilder = {};
+const linkBuilder = {};
 linkBuilder.zoom = (id) => {
     return `https://e.centennialcollege.ca/d2l/common/dialogs/quickLink/quickLink.d2l?ou=${id}&type=lti&rcode=CENCOL-4893909&srcou=6606&launchFramed=1&framedName=Zoom`
 }
