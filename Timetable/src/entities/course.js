@@ -1,17 +1,17 @@
 const course = {
-    id:'',
+    id: '',
     webAccessId: '',
     title: '',
     code: '',
     section: '',
     type: '',
-    state:'', // ENROLLED, DROPPED
-    // course['table'][week:0|default][day:0|sun]=[{startTime,endTime},]
-    // course['table'][week:1        ][day:1|mon]=[{startTime,endTime},]
-    table: [[{startTime:'',endTime:''},],[],],
-    assignments:[],
+    state: '', // ENROLLED, DROPPED
+    // course['table'][week:0|default][day:0|sun]=[[startTime,endTime],]
+    // course['table'][week:1        ][day:1|mon]=[[startTime,endTime],]
+    table: [[],],
+    assignments: [],
     quizzes: [],
-    notes:[],
+    notes: [],
     links: [], // additional links e.g. discord, ms-teams, ...etc
 }
-export {course}
+export { course }

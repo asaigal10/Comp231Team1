@@ -4,11 +4,12 @@ import Home from './Pages/Home'
 import Settings from './Pages/Settings'
 import './App.css'
 import {
-  getDaySchedule,
+  getCoursesList,
   getStudyWeekNumber,
   getTodayNumberInStudyDayList,
   getStudyDaysList,
-  getStudyWeeksCount
+  getStudyWeeksCount,
+  getSettings
 } from './commonJs/demo'
 
 function App({page = 'home'}) {
@@ -16,8 +17,8 @@ function App({page = 'home'}) {
     const [ studyDaysList, setStudyDaysList ] = useState(getStudyDaysList());
     const [ selectedDay, setSelectedDay ] = useState(getTodayNumberInStudyDayList(studyDaysList));
     const [ selectedWeek, setSelectedWeek ] = useState(getStudyWeekNumber());
-    const [ daySchedule, setDaySchedule ] = useState(getDaySchedule(selectedDay, selectedWeek));
-    const [ settings, setSettings ] = useState({'time-format':'12h'});
+    const [ coursesList, setCoursesList ] = useState(getCoursesList());
+    const [ settings, setSettings ] = useState(getSettings());
     
     /* shared hooks to be passed to other components */
     const sharedHooks = {
@@ -25,7 +26,7 @@ function App({page = 'home'}) {
         studyDaysList, setStudyDaysList,
         selectedDay, setSelectedDay,
         selectedWeek, setSelectedWeek,
-        daySchedule, setDaySchedule,
+        coursesList, setCoursesList,
         settings, setSettings
     }
 

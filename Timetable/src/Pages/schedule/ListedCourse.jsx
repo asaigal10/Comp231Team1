@@ -9,9 +9,9 @@ import {convertTime24to12} from '../../commonJs/dateTime'
  *      startTime:String,
  *      endTime:String,
  *      webAccessId:Sting,
- *      courseType:String,
- *      courseCode:String,
- *      courseSection:String
+ *      type:String,
+ *      code:String,
+ *      section:String
  * }
  * @returns {HTMLElement} 
  */
@@ -27,7 +27,7 @@ export default function ListedCourse({ courseInfo, sharedHooks }) {
             <div id="1134519" className='listed-course'>
                 <div className="flex-row  flex-space-between">
                     <div className="flex-row a-label padding-left">{applyTimeFormat(courseInfo.startTime) + " - " + applyTimeFormat(courseInfo.endTime)}</div>
-                    <div className="a-label padding-right">{courseInfo.courseCode + " • " + courseInfo.courseSection}</div>
+                    <div className="a-label padding-right">{courseInfo.code + " • " + courseInfo.section}</div>
                 </div>
                 <div className="flex-row flex-items-horizontally-centered a-link">
                     <a href={linkBuilder.home(courseInfo.webAccessId)} target="_blank" className="">
@@ -42,7 +42,7 @@ export default function ListedCourse({ courseInfo, sharedHooks }) {
                         <a href={linkBuilder.tableOfContent(courseInfo.webAccessId)} className="a-link" target="_blank">Content</a>
                     </div>
                     <div className="padding-right">
-                        <div className="a-label">{courseInfo.courseType}</div>
+                        <div className="a-label">{courseInfo.type}</div>
                     </div>
                 </div>
             </div>

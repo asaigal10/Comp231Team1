@@ -2,7 +2,8 @@
 
 import ListedCourse from './ListedCourse'
 import './schedule.css'
-import {generateUniqueId} from '../../commonJs/UniqueId'
+import { generateUniqueId } from '../../commonJs/UniqueId'
+import { course } from '../../entities/course'
 
 /** schedule block for one day courses
  * @param {Array} dayCourses [course-object1,course-object1,...] -> 
@@ -18,18 +19,30 @@ import {generateUniqueId} from '../../commonJs/UniqueId'
  * @returns {HTMLElement} 
  */
 export default function WeekSchedule({ sharedHooks }) {
-    function getSelectedSchedule(){
-        if (sharedHooks.daySchedule[sharedHooks.selectedWeek]){
-            if (sharedHooks.daySchedule[sharedHooks.selectedWeek][sharedHooks.selectedDay]){
-                return sharedHooks.daySchedule[sharedHooks.selectedWeek][sharedHooks.selectedDay]
+    // heeds to be converted to a hook for updates
+    function buildDaySchedule() {
+        let daySchedule = []
+        let day = sharedHooks.selectedDay
+        let week = sharedHooks.selectedWeek
+        let coursesList = sharedHooks.coursesList
+        coursesList.forEach(course => {
+            if  (course['table'][week] != undefined && course['table'][week][day] != undefined) {
+                course['table'][week][day].forEach(([startTime, endTime]) => {
+                    let listedCourse = {...course}
+                    listedCourse.startTime = startTime
+                    listedCourse.endTime = endTime
+                    daySchedule.push(listedCourse)
+                });
+            } else if  (course['table'][0] != undefined && course['table'][0][day] != undefined) {
+                course['table'][0][day].forEach(([startTime, endTime]) => {
+                    let listedCourse = {...course}
+                    listedCourse.startTime = startTime
+                    listedCourse.endTime = endTime
+                    daySchedule.push(listedCourse)
+                });
             }
-        }
-        if (sharedHooks.daySchedule[0]){
-            if (sharedHooks.daySchedule[0][sharedHooks.selectedDay]){
-                return sharedHooks.daySchedule[0][sharedHooks.selectedDay]
-            }
-        }
-        return [];
+        });
+        return daySchedule
     }
     return (
         <>
@@ -42,9 +55,9 @@ export default function WeekSchedule({ sharedHooks }) {
                     </div>
                     <div>
                         {
-                            getSelectedSchedule().map((courseInfo)=>(
+                            buildDaySchedule().map((listedCourse) => (
                                 <div key={generateUniqueId()}>
-                                    <ListedCourse courseInfo = {courseInfo} sharedHooks={sharedHooks} />
+                                    <ListedCourse courseInfo={listedCourse} sharedHooks={sharedHooks} />
                                 </div>
                             ))
                         }

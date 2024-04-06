@@ -6,7 +6,7 @@ import {link} from '../entities/link'
 import {generateUniqueId} from '../commonJs/UniqueId'
 import {DUE, ENROLLED, ACTIVE} from '../commonJs/states'
 
-const getDaySchedule = () =>{
+const getCoursesList = () =>{
     /* data[weekNumber][dayNumber] = [courseObject1,courseObject2,...]*/
     /* data[weekNumber][dayNumber] = [{title,...},{...},...]*/
     /* week days sun:0,...,sat:6 */
@@ -31,6 +31,7 @@ const getDaySchedule = () =>{
     a.isGroupProject = 1
     a.note = 'require a meeting'
     // create a quiz
+    let q = {...assignment}
     q.id = generateUniqueId()
     q.title = 'TAC Technical Report'
     q.start = '2024-04-08'
@@ -64,6 +65,19 @@ const getDaySchedule = () =>{
     c.links.push(u)
     c.notes.push(n)
 
+    // add course day schedule
+    // week: 0-n:week-1 to week-n, week-0 is default week(all not undefined weeks)
+    //  day: 0-6:sun-sat
+    // startTime & endTime : 24h-time e.g. 13:30
+    // .table            = []
+    // .table[keek]      = []
+    // .table[week][day] = []
+    // .table[week][day] = [[startTime,endTime],...]
+    c.table = []
+    c.table[0] = []
+    c.table[0][6] = []
+    c.table[0][6].push(['13:30','14:20'])
+
     temp_courses_list.push(c)
     return temp_courses_list;
 }
@@ -84,4 +98,9 @@ const getStudyWeeksCount = () =>{
     return 14;
 }
 
-export {getDaySchedule, getStudyWeekNumber,getStudyDaysList, getStudyWeeksCount, getTodayNumberInStudyDayList}
+const getSettings = () =>{
+    let settings = {}
+    settings['time-format'] = '12h';
+    return settings
+}
+export {getCoursesList, getStudyWeekNumber,getStudyDaysList, getStudyWeeksCount, getTodayNumberInStudyDayList, getSettings}
