@@ -51,8 +51,8 @@ const getCoursesList = () => {
     u.description = 'home page - for testing'
     u.link = 'https://discord.com/'
     u.state = ACTIVE
-    // create a course
-    let c = { ...course }
+    // create a deep-copy of a course
+    let c = JSON.parse(JSON.stringify(course))
     c.id = generateUniqueId()
     c.webAccessId = '1079746'
     c.title = 'Software Development Project 1'
