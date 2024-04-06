@@ -1,7 +1,6 @@
 /* author: Mohammad Aljelmawi */
 import './listedCourse.css'
-import { linkBuilder } from '../../commonJs/linksBuilder'
-import {convertTime24to12} from '../../commonJs/dateTime'
+import { convertTime24to12 } from '../../commonJs/dateTime'
 /** schedule day courses widget
  * @param {Object} courseInfo course-object1 -> 
  * {
@@ -16,11 +15,17 @@ import {convertTime24to12} from '../../commonJs/dateTime'
  * @returns {HTMLElement} 
  */
 export default function ListedCourse({ courseInfo, sharedHooks }) {
-    function applyTimeFormat(time){
-        if (sharedHooks.settings['time-format'] == '12h'){
+    function applyTimeFormat(time) {
+        if (sharedHooks.settings['time-format'] == '12h') {
             return convertTime24to12(time);
         }
         return time;
+    }
+    function buildLink(courseLink) {
+        return `${courseLink.prefix}${courseInfo.webAccessId}${courseLink.suffix}`
+    }
+    function asTitle(str){
+        return str.slice(0,1).toUpperCase() + str.slice(1)
     }
     return (
         <>
@@ -29,17 +34,18 @@ export default function ListedCourse({ courseInfo, sharedHooks }) {
                     <div className="flex-row a-label padding-left">{applyTimeFormat(courseInfo.startTime) + " - " + applyTimeFormat(courseInfo.endTime)}</div>
                     <div className="a-label padding-right">{courseInfo.code + " • " + courseInfo.section}</div>
                 </div>
-                <div className="flex-row flex-items-horizontally-centered a-link">
-                    <a href={linkBuilder.home(courseInfo.webAccessId)} target="_blank" className="">
+                <div className="flex-row flex-items-horizontally-centered a-label a-title">
                         {courseInfo.title}
-                    </a>
                 </div>
                 <div className="flex-row flex-space-between">
                     <div className='flex-row'>
-                        <a href={linkBuilder.zoom(courseInfo.webAccessId)} className="a-link" target="_blank">Zoom</a>
-                        <a href={linkBuilder.assignment(courseInfo.webAccessId)} className="a-link" target="_blank">Assignment</a>
-                        <a href={linkBuilder.quizzes(courseInfo.webAccessId)} className="a-link" target="_blank">Quizzes</a>
-                        <a href={linkBuilder.tableOfContent(courseInfo.webAccessId)} className="a-link" target="_blank">Content</a>
+                        {
+                            sharedHooks.courseLinks.map( courseLink => 
+                                <a href={buildLink(courseLink)} className="a-link" target="_blank" key={courseLink.id}>
+                                    {asTitle(courseLink.title)}
+                                </a>
+                            )
+                        }
                     </div>
                     <div className="padding-right">
                         <div className="a-label">{courseInfo.type}</div>

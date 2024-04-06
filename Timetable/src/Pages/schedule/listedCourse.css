@@ -3,6 +3,7 @@
     --label-color:darkcyan;
     --link-color:#979b64;
     --border-color:lightslategray;
+    --listed-course-title-color:lightslategray;
 }
 .listed-course{
     position: relative;

@@ -1,12 +1,13 @@
-import {calcWeekOfYear} from './dateTime'
-import {course} from '../entities/course'
-import {assignment} from '../entities/assignment'
-import {note} from '../entities/note'
-import {link} from '../entities/link'
-import {generateUniqueId} from '../commonJs/UniqueId'
-import {DUE, ENROLLED, ACTIVE} from '../commonJs/states'
+import { calcWeekOfYear } from './dateTime'
+import { course } from '../entities/course'
+import { assignment } from '../entities/assignment'
+import { note } from '../entities/note'
+import { link } from '../entities/link'
+import { courseLink } from '../entities/courseLink'
+import { generateUniqueId } from '../commonJs/UniqueId'
+import { DUE, ENROLLED, ACTIVE } from '../commonJs/states'
 
-const getCoursesList = () =>{
+const getCoursesList = () => {
     /* data[weekNumber][dayNumber] = [courseObject1,courseObject2,...]*/
     /* data[weekNumber][dayNumber] = [{title,...},{...},...]*/
     /* week days sun:0,...,sat:6 */
@@ -21,7 +22,7 @@ const getCoursesList = () =>{
     // user courses
     let temp_courses_list = []
     // create an assignment
-    let a = {...assignment}
+    let a = { ...assignment }
     a.id = generateUniqueId()
     a.title = 'Iteration 2 Planning'
     a.start = '2024-01-08'
@@ -31,7 +32,7 @@ const getCoursesList = () =>{
     a.isGroupProject = 1
     a.note = 'require a meeting'
     // create a quiz
-    let q = {...assignment}
+    let q = { ...assignment }
     q.id = generateUniqueId()
     q.title = 'TAC Technical Report'
     q.start = '2024-04-08'
@@ -40,7 +41,7 @@ const getCoursesList = () =>{
     q.state = DUE
     q.isGroupProject = undefined
     // create a note
-    let n = {...note}
+    let n = { ...note }
     n.id = generateUniqueId()
     n.title = 'in class meeting next week'
     n.state = ACTIVE
@@ -51,7 +52,7 @@ const getCoursesList = () =>{
     u.link = 'https://discord.com/'
     u.state = ACTIVE
     // create a course
-    let c = {...course}
+    let c = { ...course }
     c.id = generateUniqueId()
     c.webAccessId = '1079746'
     c.title = 'Software Development Project 1'
@@ -76,12 +77,12 @@ const getCoursesList = () =>{
     c.table = []
     c.table[0] = []
     c.table[0][6] = []
-    c.table[0][6].push(['13:30','14:20'])
+    c.table[0][6].push(['13:30', '14:20'])
 
     temp_courses_list.push(c)
     return temp_courses_list;
 }
-const getStudyWeekNumber = () =>{
+const getStudyWeekNumber = () => {
     return calcWeekOfYear()
 }
 
@@ -91,16 +92,75 @@ const getTodayNumberInStudyDayList = () => {
 
 const getStudyDaysList = () => {
     /* days starts sunday */
-    return [0,1,2,3,4,5,6];
+    return [0, 1, 2, 3, 4, 5, 6];
 }
 
-const getStudyWeeksCount = () =>{
+const getStudyWeeksCount = () => {
     return 14;
 }
 
-const getSettings = () =>{
+const getSettings = () => {
     let settings = {}
     settings['time-format'] = '12h';
     return settings
 }
-export {getCoursesList, getStudyWeekNumber,getStudyDaysList, getStudyWeeksCount, getTodayNumberInStudyDayList, getSettings}
+const getCourseLinks = () => {
+    // courseLink.link = prefix + webAccessId + suffix
+    let links = []
+    let u;
+
+    // Home link
+    u = { ...courseLink }
+    u.index = 3
+    u.id = generateUniqueId()
+    u.title = 'home'
+    u.prefix = 'https://e.centennialcollege.ca/d2l/home'
+    u.suffix = ''
+    links.push(u)
+
+    // Zoom link
+    u = { ...courseLink }
+    u.index = 2
+    u.id = generateUniqueId()
+    u.title = 'zoom'
+    u.prefix = 'https://e.centennialcollege.ca/d2l/common/dialogs/quickLink/quickLink.d2l?ou='
+    u.suffix = '&type=lti&rcode=CENCOL-4893909&srcou=6606&launchFramed=1&framedName=Zoom'
+    links.push(u)
+
+    // Assignments link
+    u = { ...courseLink }
+    u.id = generateUniqueId()
+    u.title = 'assignments'
+    u.prefix = 'https://e.centennialcollege.ca/d2l/lms/dropbox/user/folders_list.d2l?ou='
+    u.suffix = '&isprv=0'
+    links.push(u)
+
+    // Quizzes link
+    u = { ...courseLink }
+    u.id = generateUniqueId()
+    u.title = 'quizzes'
+    u.prefix = 'https://e.centennialcollege.ca/d2l/lms/quizzing/user/quizzes_list.d2l?ou='
+    links.push(u)
+
+    // Content link
+    u = { ...courseLink }
+    u.id = generateUniqueId()
+    u.title = 'content'
+    u.prefix = 'https://e.centennialcollege.ca/d2l/le/content/'
+    u.suffix = '/Home'
+    links.push(u)
+
+    // reorder links
+    links.sort((a, b) => a.index - b.index);
+
+    return links
+}
+export {
+    getCoursesList,
+    getStudyWeekNumber,
+    getStudyDaysList,
+    getStudyWeeksCount,
+    getTodayNumberInStudyDayList,
+    getSettings,
+    getCourseLinks
+}
