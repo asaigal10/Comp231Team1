@@ -11,6 +11,7 @@ export default function Home({sharedHooks}) {
         <p>{getSemesterString()}</p>
         <div className="schedules-container">
                 <WeekSchedule sharedHooks={sharedHooks} />
+                <Schedule sharedHooks={sharedHooks} />
                 <DaySchedule sharedHooks={sharedHooks} />
             </div>
         </div>
