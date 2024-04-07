@@ -46,7 +46,7 @@ const getCoursesList = () => {
     n.title = 'in class meeting next week'
     n.state = ACTIVE
     // create a link(URL)
-    let u = link
+    let u = {...link}
     u.title = 'discord'
     u.description = 'home page - for testing'
     u.link = 'https://discord.com/'
