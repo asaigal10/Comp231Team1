@@ -15,7 +15,7 @@ using vs code:<br><br>
 | Task | Who | Est. | Actual |
 | :--- | :-- | :--: | :----: |
 | Design code the Home page | Kris | 2 | 2 |
-| Display the current day | Noor | 1 | - |
+| Display the current day | Noor | 1 | 2 |
 | Design the schedule block | Mohammed | 3 | 2 |
 | Implement local server | Kris | 5 | 1 |
 
