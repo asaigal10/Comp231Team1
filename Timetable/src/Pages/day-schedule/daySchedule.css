@@ -1,0 +1,56 @@
+/* day-schedule.css */
+
+.day-schedule {
+   
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    flex: 1; /* Each schedule takes equal space */
+    margin-right: 10px; /* Add margin between the schedules */
+    margin-top: 20px;
+  }
+  
+  .day-schedule .table-head {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border: #eaaa80;
+    color: #eaaa80;
+  }
+  
+  .day-schedule .hours-range {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    border: #ccc;
+    color: #eaaa80;
+  }
+  
+  .day-schedule .hour {
+    text-align: left; /* Align hours to the right */
+    font-size: 0.8rem;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 5px; /* Add margin between hours */
+  }
+  
+  .day-schedule .schedule-table {
+
+    display: grid;
+    grid-template-columns: repeat(16, 1fr); /* Adjust the number of columns to match the hours range */
+    gap: 5px;
+  }
+  
+  /* Additional styles */
+  .day-schedule-container {
+    
+    flex: 1; /* Ensure the DaySchedule takes up available space */
+    margin-right: 20px; /* Add margin between WeekSchedule and DaySchedule */
+  }
+  .schedule-container {
+    display: flex;
+    justify-content:space-between; /* Add space between the components */
+}
+  /* Adjust the styles as needed */
+  
