@@ -1,6 +1,7 @@
 /* author: Mohammad Aljelmawi */
 import './listedCourse.css'
 import { convertTime24to12 } from '../../commonJs/dateTime'
+import { ONLINE, IN_PERSON, OTHER } from '../../commonJs/states'
 /** schedule day courses widget
  * @param {Object} courseInfo course-object1 -> 
  * {
@@ -24,34 +25,49 @@ export default function ListedCourse({ courseInfo, sharedHooks }) {
     function buildLink(courseLink) {
         return `${courseLink.prefix}${courseInfo.webAccessId}${courseLink.suffix}`
     }
-    function asTitle(str){
-        return str.slice(0,1).toUpperCase() + str.slice(1)
+    function asTitle(str) {
+        return str.slice(0, 1).toUpperCase() + str.slice(1)
+    }
+    function getPrintableCourseType(type){
+        let course_type = ""
+        switch (type) {
+            case ONLINE:
+                course_type = "online"
+                break
+            case IN_PERSON:
+                course_type = "in-person"
+                break
+            case OTHER:
+                course_type = "other"
+                break;
+            default:
+                break;
+        }
+        return course_type
     }
     return (
-        <>
-            <div id="1134519" className='listed-course'>
-                <div className="flex-row  flex-space-between">
-                    <div className="flex-row a-label padding-left">{applyTimeFormat(courseInfo.startTime) + " - " + applyTimeFormat(courseInfo.endTime)}</div>
-                    <div className="a-label padding-right">{courseInfo.code + " • " + courseInfo.section}</div>
+        <div id="1134519" className='listed-course'>
+            <div className="flex-row  flex-space-between">
+                <div className="flex-row a-label padding-left">{applyTimeFormat(courseInfo.startTime) + " - " + applyTimeFormat(courseInfo.endTime)}</div>
+                <div className="a-label padding-right">{courseInfo.code + " • " + courseInfo.section}</div>
+            </div>
+            <div className="flex-row flex-items-horizontally-centered a-label a-title">
+                {courseInfo.title}
+            </div>
+            <div className="flex-row flex-space-between">
+                <div className='flex-row'>
+                    {
+                        sharedHooks.courseLinks.map(courseLink =>
+                            <a href={buildLink(courseLink)} className="a-link" target="_blank" key={courseLink.id}>
+                                {asTitle(courseLink.title)}
+                            </a>
+                        )
+                    }
                 </div>
-                <div className="flex-row flex-items-horizontally-centered a-label a-title">
-                        {courseInfo.title}
-                </div>
-                <div className="flex-row flex-space-between">
-                    <div className='flex-row'>
-                        {
-                            sharedHooks.courseLinks.map( courseLink => 
-                                <a href={buildLink(courseLink)} className="a-link" target="_blank" key={courseLink.id}>
-                                    {asTitle(courseLink.title)}
-                                </a>
-                            )
-                        }
-                    </div>
-                    <div className="padding-right">
-                        <div className="a-label">{courseInfo.type}</div>
-                    </div>
+                <div className="padding-right">
+                    <div className="a-label">{getPrintableCourseType(courseInfo.type)}</div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

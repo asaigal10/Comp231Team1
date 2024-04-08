@@ -10,7 +10,8 @@ import {
   getStudyDaysList,
   getStudyWeeksCount,
   getSettings,
-  getCourseLinks
+  getCourseLinks,
+  getSelectedCourse
 } from './commonJs/demo'
 
 function App({ page = 'home' }) {
@@ -22,7 +23,7 @@ function App({ page = 'home' }) {
   const [coursesList, setCoursesList] = useState(getCoursesList());
   const [settings, setSettings] = useState(getSettings());
   const [courseLinks, setCourseLinks] = useState(getCourseLinks());
-
+  const [selectedCourse,setSelectedCourse] = useState(getSelectedCourse())
   /* shared hooks to be passed to other components */
   const sharedHooks = {
     studyWeeksCount, setStudyWeeksCount,
@@ -31,7 +32,8 @@ function App({ page = 'home' }) {
     selectedWeek, setSelectedWeek,
     coursesList, setCoursesList,
     settings, setSettings,
-    courseLinks, setCourseLinks
+    courseLinks, setCourseLinks,
+    selectedCourse,setSelectedCourse
   }
 
   const [curWeek, setCurWeek] = useState(0)

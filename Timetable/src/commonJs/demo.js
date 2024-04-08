@@ -5,7 +5,7 @@ import { note } from '../entities/note'
 import { link } from '../entities/link'
 import { courseLink } from '../entities/courseLink'
 import { generateUniqueId } from '../commonJs/UniqueId'
-import { DUE, ENROLLED, ACTIVE } from '../commonJs/states'
+import { DUE, ENROLLED, ACTIVE,ONLINE } from '../commonJs/states'
 
 const getCoursesList = () => {
     /* data[weekNumber][dayNumber] = [courseObject1,courseObject2,...]*/
@@ -55,10 +55,10 @@ const getCoursesList = () => {
     let c = JSON.parse(JSON.stringify(course))
     c.id = generateUniqueId()
     c.webAccessId = '1079746'
-    c.title = 'Software Development Project 1'
+    c.title = 'software development project 1'
     c.code = 'comp231'
     c.section = '401'
-    c.type = 'online'
+    c.type = ONLINE
     c.state = ENROLLED
 
     c.assignments.push(a)
@@ -155,6 +155,9 @@ const getCourseLinks = () => {
 
     return links
 }
+const getSelectedCourse = ()=>{
+    return undefined
+}
 export {
     getCoursesList,
     getStudyWeekNumber,
@@ -162,5 +165,6 @@ export {
     getStudyWeeksCount,
     getTodayNumberInStudyDayList,
     getSettings,
-    getCourseLinks
+    getCourseLinks,
+    getSelectedCourse
 }
