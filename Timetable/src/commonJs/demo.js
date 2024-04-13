@@ -51,7 +51,7 @@ const getCoursesList = () => {
     u.title = 'discord'
     u.description = 'home page - for testing'
     u.link = 'https://discord.com/'
-    u.state = ACTIVE
+    u.state = undefined
     // create a deep-copy of a course
     let c = JSON.parse(JSON.stringify(course))
     c.id = generateUniqueId()

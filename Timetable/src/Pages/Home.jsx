@@ -13,6 +13,8 @@ import ShowListedTime from './mutable-list-with-tabs/listed-time/ShowListedTime'
 import AddListedTime from './mutable-list-with-tabs/listed-time/AddListedTime'
 import ShowListedAssignment from './mutable-list-with-tabs/listed-assignment/ShowListedAssignment'
 import AddListedAssignment from './mutable-list-with-tabs/listed-assignment/AddListedAssignment'
+import ShowListedLink from './mutable-list-with-tabs/listed-link/ShowListedLink'
+import AddListedLink from './mutable-list-with-tabs/listed-link/AddListedLink'
 import DaySchedule from "./day-schedule/Day-Schedule"; // Import DaySchedule component
 /* TO DO: code comments */
 export default function Home({ sharedHooks }) {
@@ -21,13 +23,16 @@ export default function Home({ sharedHooks }) {
     /* -selected-course- all days to weeks assignments */
     const [courseAssignmentsList, setCourseAssignmentsList] = useState(undefined)
     const [selectedAssignment, setSelectedAssignment] = useState(undefined)
-    /* -selected-course- all days to weeks assignments */
+    /* -selected-course- all days to weeks quizzes */
     const [courseQuizzesList, setCourseQuizzesList] = useState(undefined)
     const [selectedQuiz, setSelectedQuiz] = useState(undefined)
+    /* -selected-course- all days to weeks links */
+    const [courseLinksList, setCourseLinksList] = useState(undefined)
+    const [selectedLink, setSelectedLink] = useState(undefined)
     /** build mutable-list & listed-time consumable courseTimeList from the table(weeks>days>hour_windows) of a given course 
      * f(course) -> [{...},{...},...] 
     */
-    function getCourseSchedule(course) { 
+    function getCourseSchedule(course) {
         // v -> [{id,week,day,startTime,endTime},...]
         let value = []
         // course.table -> [weekIndex:[dayIndex:[startTime,endTime]]] 
@@ -56,12 +61,14 @@ export default function Home({ sharedHooks }) {
             setCourseTimeList(getCourseSchedule(course))
             setCourseAssignmentsList(course.assignments)
             setCourseQuizzesList(course.quizzes)
+            setCourseLinksList(course.links)
         }
         /* when no course selected */
         else if (sharedHooks.selectedCourse == 'all') {
             setCourseTimeList(undefined)
             setCourseAssignmentsList(undefined)
             setCourseQuizzesList(undefined)
+            setCourseLinksList(undefined)
         }
     }, [sharedHooks.selectedCourse])
     return <div className="max-w-6xl border-black border-4 rounded-md text-center m-auto">
@@ -120,6 +127,18 @@ export default function Home({ sharedHooks }) {
                 newElementComponent={AddListedAssignment}
                 selectedItemHook={selectedQuiz}
                 selectedItemHookSetter={setSelectedQuiz}
+                sharedHooks={sharedHooks}
+            />
+            {/* -course- links block */}
+            <MutableListWithTabs
+                title={"courses links"}
+                elementsHook={courseLinksList}
+                elementsHookSetter={setCourseLinksList}
+                tabs={[{ key: 'course links book', value: undefined }]}
+                elementComponent={ShowListedLink}
+                newElementComponent={AddListedLink}
+                selectedItemHook={selectedLink}
+                selectedItemHookSetter={setSelectedLink}
                 sharedHooks={sharedHooks}
             />
             {/* TO DO: MutableListWithTabs for course.[customized-links,notes] */}
