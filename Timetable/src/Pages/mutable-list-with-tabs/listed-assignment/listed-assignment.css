@@ -56,8 +56,10 @@
         border: 0px;
         border-bottom: 1px solid lightcoral;
         text-align: center;
-        width: 105px;
         background-color: transparent;
+    }
+    input[type='date']{
+        width: 120px;
     }
 
     input:focus,

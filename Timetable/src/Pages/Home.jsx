@@ -12,6 +12,7 @@ import AddListedCourse from './mutable-list-with-tabs/listed-course/AddListedCou
 import ShowListedTime from './mutable-list-with-tabs/listed-time/ShowListedTime'
 import AddListedTime from './mutable-list-with-tabs/listed-time/AddListedTime'
 import ShowListedAssignment from './mutable-list-with-tabs/listed-assignment/ShowListedAssignment'
+import AddListedAssignment from './mutable-list-with-tabs/listed-assignment/AddListedAssignment'
 import DaySchedule from "./day-schedule/Day-Schedule"; // Import DaySchedule component
 /* TO DO: code comments */
 export default function Home({ sharedHooks }) {
@@ -99,6 +100,7 @@ export default function Home({ sharedHooks }) {
                 elementsHook={courseAssignmentsList}
                 elementsHookSetter={setCourseAssignmentsList}
                 elementComponent={ShowListedAssignment}
+                newElementComponent={AddListedAssignment}
                 selectedItemHook={selectedAssignment}
                 selectedItemHookSetter={setSelectedAssignment}
                 sharedHooks={sharedHooks}
