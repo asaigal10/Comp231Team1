@@ -10,10 +10,13 @@ function calcWeekOfYear(date) {
     return Math.floor(calcDayOfYear(date) / 7)
 }
 
-function getSemesterWeek() {
-    var curMonth = new Date().getMonth()
-    var curYear = new Date().getFullYear()
-    var calendarWeek = calcWeekOfYear()
+function getSemesterWeek(date) {
+    if (typeof (date) == "undefined") {
+        date = new Date()
+    }
+    var curMonth = date.getMonth()
+    var curYear = date.getFullYear()
+    var calendarWeek = calcWeekOfYear(date)
     var dateString = ""
     if (curMonth >= 0 && curMonth <= 3) {
         dateString = "January 8, " + curYear
@@ -30,10 +33,13 @@ function getSemesterWeek() {
     }
 }
 
-function getSemesterString() {
-    var curMonth = new Date().getMonth()
-    var curYear = new Date().getFullYear()
-    var calendarWeek = getSemesterWeek()
+function getSemesterString(date) {
+    if (typeof (date) == "undefined") {
+        date = new Date()
+    }
+    var curMonth = date.getMonth()
+    var curYear = date.getFullYear()
+    var calendarWeek = getSemesterWeek(date)
     if (curMonth >= 0 && curMonth <= 3) {
         return "Winter " + curYear + " - Week " + calendarWeek + " / 14"
     } else if (curMonth >= 4 && curMonth <= 7) {

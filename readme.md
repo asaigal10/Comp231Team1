@@ -9,6 +9,10 @@ using vs code:<br><br>
   preform a dependency installation: `npm install`<br>
   run the app: `npm run dev`<br>
 
+## Running unit tests
+Open a terminal to Timetable/src/unitTests<br>
+  run the command `node .\dateTimeTests.js`
+
 ## Iteration 1 stories
 
 **As a student I want to be able to be able to view my schedule for the day**
