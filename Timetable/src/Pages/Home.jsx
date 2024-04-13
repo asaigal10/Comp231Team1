@@ -17,6 +17,7 @@ import ShowListedLink from './mutable-list-with-tabs/listed-link/ShowListedLink'
 import AddListedLink from './mutable-list-with-tabs/listed-link/AddListedLink'
 import ShowListedNote from './mutable-list-with-tabs/listed-note/ShowListedLink'
 import AddListedNote from './mutable-list-with-tabs/listed-note/AddListedLink'
+import AddCourseLink from './mutable-list-with-tabs/listed-course-link/AddListedLink'
 import DaySchedule from "./day-schedule/Day-Schedule"; // Import DaySchedule component
 /* TO DO: code comments */
 export default function Home({ sharedHooks }) {
@@ -34,6 +35,8 @@ export default function Home({ sharedHooks }) {
     /* -selected-course- all days to weeks links */
     const [courseNotesList, setCourseNotesList] = useState(undefined)
     const [selectedNote, setSelectedNote] = useState(undefined)
+    /* refresh hook */
+    const [refreshHook, setRefreshHook] = useState(undefined)
     /** build mutable-list & listed-time consumable courseTimeList from the table(weeks>days>hour_windows) of a given course 
      * f(course) -> [{...},{...},...] 
     */
@@ -136,12 +139,12 @@ export default function Home({ sharedHooks }) {
                 selectedItemHookSetter={setSelectedQuiz}
                 sharedHooks={sharedHooks}
             />
-            {/* -course- links block */}
+            {/* -course- customized links block */}
             <MutableListWithTabs
-                title={"courses links"}
+                title={"course customized links"}
                 elementsHook={courseLinksList}
                 elementsHookSetter={setCourseLinksList}
-                tabs={[{ key: 'course links book', value: undefined }]}
+                tabs={[{ key: 'course customized links book', value: undefined }]}
                 elementComponent={ShowListedLink}
                 newElementComponent={AddListedLink}
                 selectedItemHook={selectedLink}
@@ -160,7 +163,18 @@ export default function Home({ sharedHooks }) {
                 selectedItemHookSetter={setSelectedNote}
                 sharedHooks={sharedHooks}
             />
-            {/* TO DO: MutableListWithTabs for course-default links e.g. home,zoom,..etc */}
+            {/* MutableListWithTabs for course-default links e.g. home,zoom,..etc */}
+            <MutableListWithTabs
+                title={"course links"}
+                elementsHook={sharedHooks.courseLinks}
+                elementsHookSetter={sharedHooks.setCourseLinks}
+                tabs={[{ key: 'course links book', value: undefined }]}
+                elementComponent={ShowListedNote}
+                newElementComponent={AddCourseLink}
+                selectedItemHook={refreshHook}
+                selectedItemHookSetter={setRefreshHook}
+                sharedHooks={sharedHooks}
+            />
         </div>
     </div>
 
