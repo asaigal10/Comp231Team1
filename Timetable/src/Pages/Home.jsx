@@ -21,6 +21,9 @@ export default function Home({ sharedHooks }) {
     /* -selected-course- all days to weeks assignments */
     const [courseAssignmentsList, setCourseAssignmentsList] = useState(undefined)
     const [selectedAssignment, setSelectedAssignment] = useState(undefined)
+    /* -selected-course- all days to weeks assignments */
+    const [courseQuizzesList, setCourseQuizzesList] = useState(undefined)
+    const [selectedQuiz, setSelectedQuiz] = useState(undefined)
     /** build mutable-list & listed-time consumable courseTimeList from the table(weeks>days>hour_windows) of a given course 
      * f(course) -> [{...},{...},...] 
     */
@@ -52,11 +55,13 @@ export default function Home({ sharedHooks }) {
             let course = sharedHooks.coursesList.filter(x => x.id == sharedHooks.selectedCourse)[0]
             setCourseTimeList(getCourseSchedule(course))
             setCourseAssignmentsList(course.assignments)
+            setCourseQuizzesList(course.quizzes)
         }
         /* when no course selected */
         else if (sharedHooks.selectedCourse == 'all') {
             setCourseTimeList(undefined)
             setCourseAssignmentsList(undefined)
+            setCourseQuizzesList(undefined)
         }
     }, [sharedHooks.selectedCourse])
     return <div className="max-w-6xl border-black border-4 rounded-md text-center m-auto">
@@ -105,7 +110,19 @@ export default function Home({ sharedHooks }) {
                 selectedItemHookSetter={setSelectedAssignment}
                 sharedHooks={sharedHooks}
             />
-            {/* TO DO: MutableListWithTabs for course.[assignments,quizzes,customized-links,notes]; tabs may vary */}
+            {/* -course- quizzes block */}
+            <MutableListWithTabs
+                title={"courses quizzes"}
+                tabs={[{ key: 'due', value: DUE }, { key: 'done', value: DONE }]}
+                elementsHook={courseQuizzesList}
+                elementsHookSetter={setCourseQuizzesList}
+                elementComponent={ShowListedAssignment}
+                newElementComponent={AddListedAssignment}
+                selectedItemHook={selectedQuiz}
+                selectedItemHookSetter={setSelectedQuiz}
+                sharedHooks={sharedHooks}
+            />
+            {/* TO DO: MutableListWithTabs for course.[quizzes,customized-links,notes]; tabs may vary */}
             {/* TO DO: MutableListWithTabs for course-default links e.g. home,zoom,..etc */}
         </div>
     </div>
