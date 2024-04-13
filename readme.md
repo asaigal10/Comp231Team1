@@ -53,7 +53,7 @@ using vs code:<br><br>
 | Update the home page with Add assignment button | Amrit | 1 | - |
 | Create a form for adding the assignments | Noor | 1 | - |
 | Create a combo box for classes and assignments forms | Kris | 2 | - |
-| Form validation and Assignment validation | Mohammed | 3 | - |
+| Form validation and Assignment validation | Mohammed | 3 | 2 |
 | Create a data structure for the assignment | Amrit | 2 | - |
 
 ***
