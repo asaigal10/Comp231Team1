@@ -91,7 +91,12 @@ export default function Home({ sharedHooks }) {
                 sharedHooks={sharedHooks}
             />
             {/* -course- assignments block */}
-
+            <MutableListWithTabs
+                title={"courses assignments"}
+                elementsHook={courseAssignmentsList}
+                elementsHookSetter={setCourseAssignmentsList}
+                sharedHooks={sharedHooks}
+            />
             {/* TO DO: MutableListWithTabs for course.[assignments,quizzes,customized-links,notes]; tabs may vary */}
             {/* TO DO: MutableListWithTabs for course-default links e.g. home,zoom,..etc */}
         </div>
