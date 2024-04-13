@@ -160,7 +160,6 @@ export default function Home({ sharedHooks }) {
                 selectedItemHookSetter={setSelectedNote}
                 sharedHooks={sharedHooks}
             />
-            {/* TO DO: MutableListWithTabs for course.[customized-links,notes] */}
             {/* TO DO: MutableListWithTabs for course-default links e.g. home,zoom,..etc */}
         </div>
     </div>
