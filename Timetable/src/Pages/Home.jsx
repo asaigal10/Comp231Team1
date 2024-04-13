@@ -48,10 +48,12 @@ export default function Home({ sharedHooks }) {
         if (sharedHooks.selectedCourse && sharedHooks.selectedCourse != 'all') {
             let course = sharedHooks.coursesList.filter(x => x.id == sharedHooks.selectedCourse)[0]
             setCourseTimeList(getCourseSchedule(course))
+            setCourseAssignmentsList(course.assignments)
         }
         /* when no course selected */
         else if (sharedHooks.selectedCourse == 'all') {
             setCourseTimeList(undefined)
+            setCourseAssignmentsList(undefined)
         }
     }, [sharedHooks.selectedCourse])
     return <div className="max-w-6xl border-black border-4 rounded-md text-center m-auto">
