@@ -21,6 +21,10 @@ import AddCourseLink from './mutable-list-with-tabs/listed-course-link/AddListed
 import DaySchedule from "./day-schedule/Day-Schedule"; // Import DaySchedule component
 /* TO DO: code comments */
 export default function Home({ sharedHooks }) {
+    const [activeTab, setActiveTab] = useState(0);
+    const handleTabClick = (index) => {
+        setActiveTab(index);
+    };
     /* -selected-course- all days to weeks hourly time windows */
     const [courseTimeList, setCourseTimeList] = useState(undefined)
     /* -selected-course- all days to weeks assignments */
@@ -103,66 +107,6 @@ export default function Home({ sharedHooks }) {
                 selectedItemHookSetter={sharedHooks.setSelectedCourse}
                 newElementComponent={AddListedCourse}
             />
-            {/* -course- daily time window block */}
-            <MutableListWithTabs
-                title={"courses schedule"}
-                elementsHook={courseTimeList}
-                elementsHookSetter={setCourseTimeList}
-                tabs={[{ key: 'course daily time schedule', value: undefined }]}
-                selectedItemHook={undefined}
-                selectedItemHookSetter={undefined}
-                elementComponent={ShowListedTime}
-                newElementComponent={AddListedTime}
-                sharedHooks={sharedHooks}
-            />
-            {/* -course- assignments block */}
-            <MutableListWithTabs
-                title={"courses assignments"}
-                tabs={[{ key: 'due', value: DUE }, { key: 'done', value: DONE }]}
-                elementsHook={courseAssignmentsList}
-                elementsHookSetter={setCourseAssignmentsList}
-                elementComponent={ShowListedAssignment}
-                newElementComponent={AddListedAssignment}
-                selectedItemHook={selectedAssignment}
-                selectedItemHookSetter={setSelectedAssignment}
-                sharedHooks={sharedHooks}
-            />
-            {/* -course- quizzes block */}
-            <MutableListWithTabs
-                title={"courses quizzes"}
-                tabs={[{ key: 'due', value: DUE }, { key: 'done', value: DONE }]}
-                elementsHook={courseQuizzesList}
-                elementsHookSetter={setCourseQuizzesList}
-                elementComponent={ShowListedAssignment}
-                newElementComponent={AddListedAssignment}
-                selectedItemHook={selectedQuiz}
-                selectedItemHookSetter={setSelectedQuiz}
-                sharedHooks={sharedHooks}
-            />
-            {/* -course- customized links block */}
-            <MutableListWithTabs
-                title={"course customized links"}
-                elementsHook={courseLinksList}
-                elementsHookSetter={setCourseLinksList}
-                tabs={[{ key: 'course customized links book', value: undefined }]}
-                elementComponent={ShowListedLink}
-                newElementComponent={AddListedLink}
-                selectedItemHook={selectedLink}
-                selectedItemHookSetter={setSelectedLink}
-                sharedHooks={sharedHooks}
-            />
-            {/* -course- notes block */}
-            <MutableListWithTabs
-                title={"courses notes"}
-                elementsHook={courseNotesList}
-                elementsHookSetter={setCourseNotesList}
-                tabs={[{ key: 'course notes book', value: undefined }]}
-                elementComponent={ShowListedNote}
-                newElementComponent={AddListedNote}
-                selectedItemHook={selectedNote}
-                selectedItemHookSetter={setSelectedNote}
-                sharedHooks={sharedHooks}
-            />
             {/* MutableListWithTabs for course-default links e.g. home,zoom,..etc */}
             <MutableListWithTabs
                 title={"course links"}
@@ -175,6 +119,90 @@ export default function Home({ sharedHooks }) {
                 selectedItemHookSetter={setRefreshHook}
                 sharedHooks={sharedHooks}
             />
+            <div className='tabs-window display-table border-with-border-radius '>
+                <div className="tab-buttons">
+                    {["Schedule", "Assignments", "Quizzes", "Links", "Notes"].map((item,index) => (
+                        <button
+                            key={index}
+                            className={"a-link"+" "+(index === activeTab ? 'active' : '')}
+                            onClick={() => handleTabClick(index)}
+                        >
+                            {item}
+                        </button>
+                    ))}
+                </div>
+                <div className="tab-content">
+                    {activeTab === 0 ?
+                        /* -course- daily time window block */
+                        < MutableListWithTabs
+                            title={"courses schedule"}
+                            elementsHook={courseTimeList}
+                            elementsHookSetter={setCourseTimeList}
+                            tabs={[{ key: 'course daily time schedule', value: undefined }]}
+                            selectedItemHook={undefined}
+                            selectedItemHookSetter={undefined}
+                            elementComponent={ShowListedTime}
+                            newElementComponent={AddListedTime}
+                            sharedHooks={sharedHooks}
+                        /> : ""}
+                    {activeTab === 1 ?
+                        /* -course- assignments block */
+                        <MutableListWithTabs
+                            title={"courses assignments"}
+                            tabs={[{ key: 'due', value: DUE }, { key: 'done', value: DONE }]}
+                            elementsHook={courseAssignmentsList}
+                            elementsHookSetter={setCourseAssignmentsList}
+                            elementComponent={ShowListedAssignment}
+                            newElementComponent={AddListedAssignment}
+                            selectedItemHook={selectedAssignment}
+                            selectedItemHookSetter={setSelectedAssignment}
+                            sharedHooks={sharedHooks}
+                        />
+                        : ""}
+                    {activeTab === 2 ?
+                        /* -course- quizzes block */
+                        <MutableListWithTabs
+                            title={"courses quizzes"}
+                            tabs={[{ key: 'due', value: DUE }, { key: 'done', value: DONE }]}
+                            elementsHook={courseQuizzesList}
+                            elementsHookSetter={setCourseQuizzesList}
+                            elementComponent={ShowListedAssignment}
+                            newElementComponent={AddListedAssignment}
+                            selectedItemHook={selectedQuiz}
+                            selectedItemHookSetter={setSelectedQuiz}
+                            sharedHooks={sharedHooks}
+                        />
+                        : ""}
+                    {activeTab === 3 ?
+                        /* -course- customized links block */
+                        <MutableListWithTabs
+                            title={"course customized links"}
+                            elementsHook={courseLinksList}
+                            elementsHookSetter={setCourseLinksList}
+                            tabs={[{ key: 'course customized links book', value: undefined }]}
+                            elementComponent={ShowListedLink}
+                            newElementComponent={AddListedLink}
+                            selectedItemHook={selectedLink}
+                            selectedItemHookSetter={setSelectedLink}
+                            sharedHooks={sharedHooks}
+                        />
+                        : ""}
+                    {activeTab === 4 ?
+                        /* -course- notes block */
+                        <MutableListWithTabs
+                            title={"courses notes"}
+                            elementsHook={courseNotesList}
+                            elementsHookSetter={setCourseNotesList}
+                            tabs={[{ key: 'course notes book', value: undefined }]}
+                            elementComponent={ShowListedNote}
+                            newElementComponent={AddListedNote}
+                            selectedItemHook={selectedNote}
+                            selectedItemHookSetter={setSelectedNote}
+                            sharedHooks={sharedHooks}
+                        />
+                        : ""}
+                </div>
+            </div>
         </div>
     </div>
 

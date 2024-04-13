@@ -80,3 +80,12 @@
     color: orangered;
     border-color: orangered;
 }
+.border-with-border-radius{
+    border-width:1px;
+    border-color: lightcoral;
+    border-radius: 10px;
+}
+.active{
+    background-color: lightblue;
+    color: darkolivegreen;
+}
