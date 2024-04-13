@@ -43,7 +43,7 @@ using vs code:<br><br>
 | Task | Who | Est. | Actual |
 | :--- | :-- | :--: | :----: |
 | Calculate week number | Kris | 5 | 3 |
-| Update the home page | Noor | 1 | - |
+| Update the home page | Noor | 1 | 1 |
 
 ***
 
