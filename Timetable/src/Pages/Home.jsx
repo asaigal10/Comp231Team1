@@ -15,6 +15,8 @@ import ShowListedAssignment from './mutable-list-with-tabs/listed-assignment/Sho
 import AddListedAssignment from './mutable-list-with-tabs/listed-assignment/AddListedAssignment'
 import ShowListedLink from './mutable-list-with-tabs/listed-link/ShowListedLink'
 import AddListedLink from './mutable-list-with-tabs/listed-link/AddListedLink'
+import ShowListedNote from './mutable-list-with-tabs/listed-note/ShowListedLink'
+import AddListedNote from './mutable-list-with-tabs/listed-note/AddListedLink'
 import DaySchedule from "./day-schedule/Day-Schedule"; // Import DaySchedule component
 /* TO DO: code comments */
 export default function Home({ sharedHooks }) {
@@ -29,6 +31,9 @@ export default function Home({ sharedHooks }) {
     /* -selected-course- all days to weeks links */
     const [courseLinksList, setCourseLinksList] = useState(undefined)
     const [selectedLink, setSelectedLink] = useState(undefined)
+    /* -selected-course- all days to weeks links */
+    const [courseNotesList, setCourseNotesList] = useState(undefined)
+    const [selectedNote, setSelectedNote] = useState(undefined)
     /** build mutable-list & listed-time consumable courseTimeList from the table(weeks>days>hour_windows) of a given course 
      * f(course) -> [{...},{...},...] 
     */
@@ -62,6 +67,7 @@ export default function Home({ sharedHooks }) {
             setCourseAssignmentsList(course.assignments)
             setCourseQuizzesList(course.quizzes)
             setCourseLinksList(course.links)
+            setCourseNotesList(course.notes)
         }
         /* when no course selected */
         else if (sharedHooks.selectedCourse == 'all') {
@@ -69,6 +75,7 @@ export default function Home({ sharedHooks }) {
             setCourseAssignmentsList(undefined)
             setCourseQuizzesList(undefined)
             setCourseLinksList(undefined)
+            setCourseNotesList(undefined)
         }
     }, [sharedHooks.selectedCourse])
     return <div className="max-w-6xl border-black border-4 rounded-md text-center m-auto">
@@ -139,6 +146,18 @@ export default function Home({ sharedHooks }) {
                 newElementComponent={AddListedLink}
                 selectedItemHook={selectedLink}
                 selectedItemHookSetter={setSelectedLink}
+                sharedHooks={sharedHooks}
+            />
+            {/* -course- notes block */}
+            <MutableListWithTabs
+                title={"courses notes"}
+                elementsHook={courseNotesList}
+                elementsHookSetter={setCourseNotesList}
+                tabs={[{ key: 'course notes book', value: undefined }]}
+                elementComponent={ShowListedNote}
+                newElementComponent={AddListedNote}
+                selectedItemHook={selectedNote}
+                selectedItemHookSetter={setSelectedNote}
                 sharedHooks={sharedHooks}
             />
             {/* TO DO: MutableListWithTabs for course.[customized-links,notes] */}

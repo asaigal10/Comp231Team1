@@ -45,7 +45,7 @@ const getCoursesList = () => {
     let n = { ...note }
     n.id = generateUniqueId()
     n.title = 'in class meeting next week'
-    n.state = ACTIVE
+    n.state = undefined
     // create a link(URL)
     let u = {...link}
     u.title = 'discord'
