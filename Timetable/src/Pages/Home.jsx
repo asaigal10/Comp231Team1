@@ -14,9 +14,19 @@ import AddListedTime from './mutable-list-with-tabs/listed-time/AddListedTime'
 import DaySchedule from "./day-schedule/Day-Schedule"; // Import DaySchedule component
 /* TO DO: code comments */
 export default function Home({ sharedHooks }) {
+    /* -selected-course- all days to weeks hourly time windows */
     const [courseTimeList, setCourseTimeList] = useState(undefined)
+    /* -selected-course- all days to weeks assignments */
+    const [courseAssignmentsList, setCourseAssignmentsList] = useState(undefined)
+    /** build mutable-list & listed-time consumable courseTimeList from the table(weeks>days>hour_windows) of a given course 
+     * f(course) -> [{...},{...},...] 
+    */
     function getCourseSchedule(course) { 
+        // v -> [{id,week,day,startTime,endTime},...]
         let value = []
+        // course.table -> [weekIndex:[dayIndex:[startTime,endTime]]] 
+        // Note: the structure is hierarchical arrays not objects
+        // where `:` used for clarification
         course.table.forEach((week, week_number) => {
             week.forEach((day, day_number) => {
                 day.forEach(timeSet => {
@@ -32,12 +42,14 @@ export default function Home({ sharedHooks }) {
         })
         return value
     }
+    /* whenever selected course changed */
     useEffect(() => {
         // when a course is selected
         if (sharedHooks.selectedCourse && sharedHooks.selectedCourse != 'all') {
             let course = sharedHooks.coursesList.filter(x => x.id == sharedHooks.selectedCourse)[0]
             setCourseTimeList(getCourseSchedule(course))
         }
+        /* when no course selected */
         else if (sharedHooks.selectedCourse == 'all') {
             setCourseTimeList(undefined)
         }
@@ -46,9 +58,13 @@ export default function Home({ sharedHooks }) {
         <h1 className="text-orange-500">Welcome to TimeTable!</h1>
         <p>{getSemesterString()}</p>
         <div className="schedules-container">
+            {/* week & day selector block */}
             <WeekSchedule sharedHooks={sharedHooks} />
+            {/* day of week time-table block */}
             <Schedule sharedHooks={sharedHooks} />
+            {/* full-day window as an hourly time strips */}
             {/* <DaySchedule sharedHooks={sharedHooks} /> */}
+            {/* user enrolled courses block */}
             <MutableListWithTabs
                 title={"courses list"}
                 elementsHook={sharedHooks.coursesList}
@@ -60,6 +76,7 @@ export default function Home({ sharedHooks }) {
                 selectedItemHookSetter={sharedHooks.setSelectedCourse}
                 newElementComponent={AddListedCourse}
             />
+            {/* -course- daily time window block */}
             <MutableListWithTabs
                 title={"courses schedule"}
                 elementsHook={courseTimeList}
@@ -71,6 +88,8 @@ export default function Home({ sharedHooks }) {
                 newElementComponent={AddListedTime}
                 sharedHooks={sharedHooks}
             />
+            {/* -course- assignments block */}
+
             {/* TO DO: MutableListWithTabs for course.[assignments,quizzes,customized-links,notes]; tabs may vary */}
             {/* TO DO: MutableListWithTabs for course-default links e.g. home,zoom,..etc */}
         </div>

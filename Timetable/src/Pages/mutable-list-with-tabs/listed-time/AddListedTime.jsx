@@ -1,10 +1,7 @@
-import { course as Course } from '../../../entities/course'
-import { ONLINE, IN_PERSON, OTHER, ENROLLED } from '../../../commonJs/states'
 import { generateUniqueId } from '../../../commonJs/UniqueId'
 export default function AddListedTime({ setAddNewElement, elementsHook, elementsHookSetter, sharedHooks }) {
     // form submission handler
     const handleSubmit = (event) => {
-        console.log(0)
         event.preventDefault();
         let form = document.getElementById('add-listed-time-form')
         /* get elements of form */
@@ -17,8 +14,6 @@ export default function AddListedTime({ setAddNewElement, elementsHook, elements
         // add time to course
         let course = sharedHooks.coursesList.filter(x => x.id == sharedHooks.selectedCourse)[0]
         if (course != undefined) {
-
-
             if (course.table[Number(t.week)] == undefined) {
                 course.table[Number(t.week)] = []
             }
@@ -30,6 +25,7 @@ export default function AddListedTime({ setAddNewElement, elementsHook, elements
             elementsHook.push(t)
             elementsHookSetter(elementsHook)
         }
+        /* let block close/hide this component */
         setAddNewElement(0)
     };
     function submitFrom() {
