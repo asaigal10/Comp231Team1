@@ -42,8 +42,8 @@ export default function MutableListWithTabs({
     tabs = [{ key: 'active', value: ACTIVE }, { key: 'archive', value: ARCHIVE }],
     elementsHook,
     elementsHookSetter=(items)=>console.log('updating elements: '+items),
-    elementComponent = ({ element, setDeleteItemsQueue, selectedItemHookFieldName, selectedItemHookSetter, sharedHooks }) => <div key={element[selectedItemHookFieldName]}>{element[selectedItemHookFieldName]}</div>,
-    newElementComponent = ({ addNewElement, elementsHook, elementsHookSetter }) => <div>New Element From Template</div>,
+    elementComponent = ({ element }) => <div key={element.id}>{element.id}</div>,
+    newElementComponent = () => <div>New Element From Template</div>,
     selectedItemHook,
     selectedItemHookSetter = (id) => { console.log(id + " selected!") },
     // fields of element of elements-hook e.i. elements-hook-value={element={id-field:'',tab-field:'',...},...}

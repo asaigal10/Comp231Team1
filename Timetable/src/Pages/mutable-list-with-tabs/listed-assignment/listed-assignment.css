@@ -1,0 +1,84 @@
+.show-listed-assignment {
+    position: relative;
+    box-sizing: border-box;
+    margin: 2px;
+    padding: 2px 5px;
+    font-size: 9pt;
+    font-weight: 400;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+
+    >.header {
+        >.right-element {
+            >.change-state-button {
+                width: 90px;
+            }
+        }
+    }
+}
+
+.selected-show-listed-assignment {
+    >.title {
+        background-color: black;
+    }
+}
+
+.add-listed-assignment-root {
+    width: 100%;
+    margin: 0 3px;
+
+    >.add-listed-assignment {
+        width: 100%;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding-bottom: 3px;
+    }
+
+    >.cancel-button {
+        width: 70px;
+        position: absolute;
+        right: 85px;
+
+        margin-top: 4px;
+    }
+
+    >.save-button {
+        width: 70px;
+        position: absolute;
+        right: 10px;
+
+        margin-top: 4px;
+    }
+
+    input,
+    select {
+        border: 0px;
+        border-bottom: 1px solid lightcoral;
+        text-align: center;
+        background-color: transparent;
+    }
+    input[type='date']{
+        width: 120px;
+    }
+
+    input:focus,
+    select:focus {
+        outline: none;
+    }
+
+    span {
+        margin: 0 10px;
+    }
+
+    .title-input {
+        width: 100%;
+        margin: 0 5px;
+        border: 0px;
+    }
+
+    #add-listed-assignment-form-submit-button {
+        display: none;
+        position: absolute;
+    }
+}

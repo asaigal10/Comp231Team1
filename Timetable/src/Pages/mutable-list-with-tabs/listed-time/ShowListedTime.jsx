@@ -1,4 +1,3 @@
-import { ENROLLED, DROPPED, ONLINE, IN_PERSON, OTHER } from '../../../commonJs/states'
 import {convertTime24to12} from '../../../commonJs/dateTime'
 import './listed-time.css'
 
@@ -50,11 +49,11 @@ export default function ShowListedTime({ element, elementsHook, elementsHookSett
             
             {/* bottom frame */}
             <div className="flex-row flex-space-between">
-                {/* course links */}
+                {/* time-window week */}
                 <div className='flex-row'>
                 <div className="a-label">{asTitle(getWeekName(element.week))}</div>
                 </div>
-                {/* course type */}
+                {/* time-window day */}
                 <div className="padding-right">
                     <div className="a-label">{asTitle(getDayName(element.day))}</div>
                 </div>

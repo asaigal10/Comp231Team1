@@ -30,6 +30,7 @@ const getCoursesList = () => {
     a.weight = '7.5'
     a.state = DUE
     a.isGroupProject = 1
+    a.link = 'https://google.com'
     a.note = 'require a meeting'
     // create a quiz
     let q = { ...assignment }
