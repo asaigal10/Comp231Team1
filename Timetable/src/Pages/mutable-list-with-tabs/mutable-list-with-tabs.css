@@ -61,6 +61,7 @@
             >.new-element-display-hidden{
                 display: none;
             }
+            overflow-y: auto;
         }
 
     }
