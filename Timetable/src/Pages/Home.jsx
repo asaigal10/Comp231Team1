@@ -3,7 +3,7 @@ import { getSemesterString } from "../commonJs/dateTime"
 import Schedule from './schedule/Schedule'
 import WeekSchedule from "./week-schedule/WeekSchedule"
 import MutableListWithTabs from './mutable-list-with-tabs/MutableListWithTabs'
-import { ENROLLED, DROPPED } from '../commonJs/states'
+import { ENROLLED, DROPPED, DUE, DONE } from '../commonJs/states'
 /*  */
 import { generateUniqueId } from '../commonJs/UniqueId'
 /* mutable list items */
@@ -11,6 +11,7 @@ import ShowListedCourse from './mutable-list-with-tabs/listed-course/ShowListedC
 import AddListedCourse from './mutable-list-with-tabs/listed-course/AddListedCourse'
 import ShowListedTime from './mutable-list-with-tabs/listed-time/ShowListedTime'
 import AddListedTime from './mutable-list-with-tabs/listed-time/AddListedTime'
+import ShowListedAssignment from './mutable-list-with-tabs/listed-assignment/ShowListedAssignment'
 import DaySchedule from "./day-schedule/Day-Schedule"; // Import DaySchedule component
 /* TO DO: code comments */
 export default function Home({ sharedHooks }) {
@@ -18,6 +19,7 @@ export default function Home({ sharedHooks }) {
     const [courseTimeList, setCourseTimeList] = useState(undefined)
     /* -selected-course- all days to weeks assignments */
     const [courseAssignmentsList, setCourseAssignmentsList] = useState(undefined)
+    const [selectedAssignment, setSelectedAssignment] = useState(undefined)
     /** build mutable-list & listed-time consumable courseTimeList from the table(weeks>days>hour_windows) of a given course 
      * f(course) -> [{...},{...},...] 
     */
@@ -93,8 +95,12 @@ export default function Home({ sharedHooks }) {
             {/* -course- assignments block */}
             <MutableListWithTabs
                 title={"courses assignments"}
+                tabs={[{ key: 'due', value: DUE }, { key: 'done', value: DONE }]}
                 elementsHook={courseAssignmentsList}
                 elementsHookSetter={setCourseAssignmentsList}
+                elementComponent={ShowListedAssignment}
+                selectedItemHook={selectedAssignment}
+                selectedItemHookSetter={setSelectedAssignment}
                 sharedHooks={sharedHooks}
             />
             {/* TO DO: MutableListWithTabs for course.[assignments,quizzes,customized-links,notes]; tabs may vary */}
