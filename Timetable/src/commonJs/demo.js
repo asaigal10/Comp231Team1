@@ -115,7 +115,7 @@ const getCourseLinks = () => {
     u.index = 3
     u.id = generateUniqueId()
     u.title = 'home'
-    u.prefix = 'https://e.centennialcollege.ca/d2l/home'
+    u.prefix = 'https://e.centennialcollege.ca/d2l/home/'
     u.suffix = ''
     links.push(u)
 

@@ -45,7 +45,7 @@ function App({ page = 'home' }) {
     <div>
       <NavBar currentDayOfWeek={curWeek.date} />
       {(page == 'home') ? <Home sharedHooks={sharedHooks} /> : null}
-      {(page == 'settings') ? <Settings /> : null}
+      {(page == 'settings') ? <Settings sharedHooks={sharedHooks} /> : null}
     </div>
   )
 }

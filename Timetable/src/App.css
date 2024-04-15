@@ -1,16 +1,19 @@
-.flex-row{
+.flex-row {
     display: flex;
     flex-direction: row;
 }
-.flex-space-between{
+
+.flex-space-between {
     display: flex;
     justify-content: space-between;
 }
-.flex-items-horizontally-centered{
+
+.flex-items-horizontally-centered {
     display: flex;
     justify-content: center;
 }
-.a-link{
+
+.a-link {
     color: var(--link-color);
     opacity: 1.0;
     padding: 0px 3px;
@@ -20,34 +23,43 @@
     margin: 1px 2px;
     cursor: pointer;
 }
-.a-link:hover{
+
+.a-link:hover {
     opacity: 0.85;
 }
-.a-link:active{
+
+.a-link:active {
     opacity: 0.60;
 }
-.a-label{
+
+.a-label {
     padding: 2px 0px;
     color: var(--label-color);
 }
-.padding-right{
+
+.padding-right {
     padding-right: 8px;
 }
-.padding-left{
+
+.padding-left {
     padding-left: 8px;
 }
-.border-bottom-dashed{
+
+.border-bottom-dashed {
     border-bottom: 0.2px dashed var(--schedule-border-color);
 }
+
 .table-head {
     padding-bottom: 3px;
     color: var(--schedule-head-color);
     font-weight: 400;
 }
-.display-table{
+
+.display-table {
     display: table;
 }
-.grid-3x4{
+
+.grid-3x4 {
     flex: 1;
     display: grid;
     grid-gap: 3px;
@@ -55,37 +67,55 @@
     grid-template-rows: repeat(3, 1fr);
     padding: 3px;
 }
-.width-50{
+
+.width-50 {
     position: relative;
     width: 50%;
 }
-.width-100{
+
+.width-100 {
     position: relative;
     width: 100%;
 }
-.margin-right{
+
+.margin-right {
     margin-right: 5px;
 }
-.display-table{
+
+.display-table {
     display: table;
 }
-.a-title{
+
+.a-title {
     font-size: 11pt;
-    color:  var(--listed-course-title-color);
+    color: var(--listed-course-title-color);
     border-bottom: 1px solid var(--listed-course-title-color);
     border-top: 1px solid var(--listed-course-title-color);
     border-radius: 4px;
 }
-.a-delete-btn{
+
+.a-delete-btn {
     color: orangered;
     border-color: orangered;
 }
-.border-with-border-radius{
-    border-width:1px;
+
+.border-with-border-radius {
+    border-width: 1px;
     border-color: lightcoral;
     border-radius: 10px;
 }
-.active{
+
+.active {
     background-color: lightblue;
     color: darkolivegreen;
+}
+
+body {
+    >div>div>div>div {
+        display: grid;
+        grid-template-columns: repeat(2, 405px);
+        /* 3 equal-width columns */
+        grid-gap: 10px;
+        border: 1px solid #000;
+    }
 }

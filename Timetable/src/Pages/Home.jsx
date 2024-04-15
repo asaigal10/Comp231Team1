@@ -107,24 +107,12 @@ export default function Home({ sharedHooks }) {
                 selectedItemHookSetter={sharedHooks.setSelectedCourse}
                 newElementComponent={AddListedCourse}
             />
-            {/* MutableListWithTabs for course-default links e.g. home,zoom,..etc */}
-            <MutableListWithTabs
-                title={"course links"}
-                elementsHook={sharedHooks.courseLinks}
-                elementsHookSetter={sharedHooks.setCourseLinks}
-                tabs={[{ key: 'course links book', value: undefined }]}
-                elementComponent={ShowListedNote}
-                newElementComponent={AddCourseLink}
-                selectedItemHook={refreshHook}
-                selectedItemHookSetter={setRefreshHook}
-                sharedHooks={sharedHooks}
-            />
             <div className='tabs-window display-table border-with-border-radius '>
                 <div className="tab-buttons">
-                    {["Schedule", "Assignments", "Quizzes", "Links", "Notes"].map((item,index) => (
+                    {["Schedule", "Assignments", "Quizzes", "Links", "Notes"].map((item, index) => (
                         <button
                             key={index}
-                            className={"a-link"+" "+(index === activeTab ? 'active' : '')}
+                            className={"a-link" + " " + (index === activeTab ? 'active' : '')}
                             onClick={() => handleTabClick(index)}
                         >
                             {item}
